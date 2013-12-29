@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN" "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
+<filesystem>
+    <folder name="Databases">
+        <folder name="Explorer">
+            <folder name="Table">
+                <folder name="Actions">
+                    <file name="Separator1000.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                        <attr name="position" intvalue="1000"/>
+                    </file>
+                    <file name="eu-doppel_helix-netbeans-csvexporter-core-actions-TableExporterWizardAction.instance">
+                        <attr name="position" intvalue="1200"/>
+                    </file>
+                </folder>
+            </folder>
+        </folder>
+    </folder>
+</filesystem>

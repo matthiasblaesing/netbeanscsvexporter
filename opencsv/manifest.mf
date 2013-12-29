@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+OpenIDE-Module: au.com.bytecode.opencsv
+OpenIDE-Module-Localizing-Bundle: au/com/bytecode/opencsv/Bundle.properties
+OpenIDE-Module-Specification-Version: 2.3.20110728
+

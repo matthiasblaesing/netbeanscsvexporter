@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+OpenIDE-Module: eu.doppel_helix.netbeans.csvexporter.core
+OpenIDE-Module-Layer: eu/doppel_helix/netbeans/csvexporter/core/layer.xml
+OpenIDE-Module-Localizing-Bundle: eu/doppel_helix/netbeans/csvexporter/core/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+
