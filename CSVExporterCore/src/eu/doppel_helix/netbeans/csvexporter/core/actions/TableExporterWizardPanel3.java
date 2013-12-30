@@ -13,7 +13,8 @@ import org.openide.WizardDescriptor;
 import org.openide.util.HelpCtx;
 
 public class TableExporterWizardPanel3 implements WizardDescriptor.Panel<WizardDescriptor> {
-    boolean valid = true;
+    
+    private boolean valid = true;
     
     /**
      * The visual component that displays this panel. If you need to access the

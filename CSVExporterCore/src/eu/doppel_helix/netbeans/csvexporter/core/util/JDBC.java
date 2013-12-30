@@ -134,4 +134,20 @@ public class JDBC {
             return identifier;
         }
     }
+    
+    public static String buildTableName(Connection c, ExporterConfigTable ect) throws SQLException {
+        String tableName = "";
+        if (ect.getCatalog() != null) {
+            tableName = tableName
+                    + JDBC.quoteIdentifier(c, ect.getCatalog())
+                    + c.getMetaData().getCatalogSeparator();
+        }
+        if (ect.getSchema() != null) {
+            tableName = tableName
+                    + JDBC.quoteIdentifier(c, ect.getSchema())
+                    + ".";
+        }
+        tableName += JDBC.quoteIdentifier(c, ect.getTable());
+        return tableName;
+    }
 }

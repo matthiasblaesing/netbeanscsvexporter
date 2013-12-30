@@ -6,12 +6,10 @@
 package eu.doppel_helix.netbeans.csvexporter.core.actions;
 
 import au.com.bytecode.opencsv.CSVWriter;
-import static eu.doppel_helix.netbeans.csvexporter.core.actions.BaseAction.findConnection;
-import static eu.doppel_helix.netbeans.csvexporter.core.util.JDBC.getColumnsForExporter;
 import eu.doppel_helix.netbeans.csvexporter.core.config.ExporterConfig;
 import eu.doppel_helix.netbeans.csvexporter.core.config.ExporterConfigTable;
 import eu.doppel_helix.netbeans.csvexporter.core.converter.CSVConverterFactory;
-import eu.doppel_helix.netbeans.csvexporter.core.util.JDBC;
+import static eu.doppel_helix.netbeans.csvexporter.core.util.JDBC.buildTableName;
 import eu.doppel_helix.netbeans.csvexporter.core.util.LoggingPanel;
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -22,14 +20,12 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.MessageFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -39,7 +35,6 @@ import org.netbeans.api.db.explorer.DatabaseConnection;
 import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;
 import org.openide.nodes.Node;
-import org.openide.util.Exceptions;
 import org.openide.windows.WindowManager;
 
 // An example action demonstrating how the wizard could be called from within
@@ -81,30 +76,8 @@ public final class TableExporterWizardAction extends BaseAction {
 
         DatabaseConnection dc = findConnection(activatedNodes);
         final Connection c = dc.getJDBCConnection();
-
-        for (Node n : activatedNodes) {
-            Collection objects = n.getLookup().lookupAll(Object.class);
-            for (Object o : objects) {
-                if (o.getClass().getName().equals("org.netbeans.modules.db.metadata.model.api.MetadataElementHandle")) {
-                    try {
-                        Field f = o.getClass().getDeclaredField("names");
-                        f.setAccessible(true);
-                        String[] names = (String[]) f.get(o);
-                        f = o.getClass().getDeclaredField("kinds");
-                        f.setAccessible(true);
-                        Object[] kinds = (Object[]) f.get(o);
-                        if (kinds.length == 3
-                                && ((Enum) kinds[2]).name().equals("TABLE")) {
-                            getColumnsForExporter(c, ec, names[0], names[1], names[2]);
-                        }
-                    } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException ex) {
-                        Exceptions.printStackTrace(ex);
-                    } catch (SQLException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                }
-            }
-        }
+        
+        extractTablesFromNodes(activatedNodes, c, ec);
 
         wiz.putProperty("ExporterConfig", ec);
         wiz.putProperty("ColumnConfigDone", false);
@@ -230,22 +203,6 @@ public final class TableExporterWizardAction extends BaseAction {
 
             jd.setVisible(true);
         }
-    }
-
-    private String buildTableName(Connection c, ExporterConfigTable ect) throws SQLException {
-        String tableName = "";
-        if (ect.getCatalog() != null) {
-            tableName = tableName
-                    + JDBC.quoteIdentifier(c, ect.getCatalog())
-                    + c.getMetaData().getCatalogSeparator();
-        }
-        if (ect.getSchema() != null) {
-            tableName = tableName
-                    + JDBC.quoteIdentifier(c, ect.getSchema())
-                    + ".";
-        }
-        tableName += JDBC.quoteIdentifier(c, ect.getTable());
-        return tableName;
     }
 
     @Override

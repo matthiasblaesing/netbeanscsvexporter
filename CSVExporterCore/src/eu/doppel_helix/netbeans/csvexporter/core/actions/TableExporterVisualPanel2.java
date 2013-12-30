@@ -24,8 +24,8 @@ public final class TableExporterVisualPanel2 extends JPanel implements ExplorerM
 
     private ExplorerManager manager = new ExplorerManager();
     private ExporterConfig exporterConfig;
-    private Lookup explorerLookup;
-    private Result explorerLookupListener;
+    private final Lookup explorerLookup;
+    private final Result explorerLookupListener;
 
     /**
      * Creates new form TableImporterVisualPanel2

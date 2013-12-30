@@ -35,13 +35,15 @@ public final class TableExporterVisualPanel3 extends JPanel {
     }
     
     private void updateMessage() {
-        if(errors == null || errors.size() == 0) {
+        if(errors == null || errors.isEmpty()) {
             message.setText("<html><b>Config ok!</b>");
         } else {
             StringBuilder sb = new StringBuilder();
             sb.append("<html><b>Config errors detected:</b><ul>");
             for(String error: errors) {
-                sb.append("<li>" + error + "</li>");
+                sb.append("<li>");
+                sb.append(error);
+                sb.append("</li>");
             }
             sb.append("</ul>");
             message.setText(sb.toString());

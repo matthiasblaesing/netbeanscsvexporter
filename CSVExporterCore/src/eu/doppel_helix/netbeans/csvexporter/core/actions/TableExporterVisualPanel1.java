@@ -15,7 +15,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.xml.bind.JAXBException;
-import org.openide.util.Exceptions;
 
 public final class TableExporterVisualPanel1 extends JPanel {
     /**
