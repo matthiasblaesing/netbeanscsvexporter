@@ -11,8 +11,8 @@
                 <package>au.com.bytecode.opencsv.bean</package>
             </public-packages>
             <class-path-extension>
-                <runtime-relative-path>ext/opencsv-2.4-20110728.020321-2.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/opencsv-2.4-20110728.020321-2.jar</binary-origin>
+                <runtime-relative-path>ext/opencsv-2.4-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/opencsv-2.4-SNAPSHOT.jar</binary-origin>
             </class-path-extension>
         </data>
     </configuration>
