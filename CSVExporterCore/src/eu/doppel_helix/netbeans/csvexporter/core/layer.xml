@@ -12,6 +12,9 @@
                     <file name="eu-doppel_helix-netbeans-csvexporter-core-actions-TableExporterWizardAction.instance">
                         <attr name="position" intvalue="1200"/>
                     </file>
+                    <file name="eu-doppel_helix-netbeans-csvexporter-core-actions-TableImporterWizardAction.instance">
+                        <attr name="position" intvalue="1300"/>
+                    </file>
                 </folder>
             </folder>
         </folder>
