@@ -125,7 +125,7 @@ public final class TableExporterWizardAction extends BaseAction {
 
                                 lp.logMessage("Exporting: " + tableName);
 
-                                final int LIMIT = 100;
+                                final int LIMIT = 1000;
                                 int rowCount = 0;
 
                                 long start = System.currentTimeMillis();
